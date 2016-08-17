@@ -14,4 +14,8 @@ public class IncorrectExpressionException extends Exception {
         super(message);
         this.position = position;
     }
+
+    public int getPosition() {
+        return position;
+    }
 }
