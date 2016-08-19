@@ -1,4 +1,4 @@
-package ua.com.mathutils.calculator.impl;
+package ua.com.mathutils.calculator.impl.context;
 
 import ua.com.mathutils.calculator.IncorrectExpressionException;
 
@@ -9,7 +9,7 @@ public class InputContext {
     private final String expression;
     private int pointer;
 
-    InputContext(String expression) throws IncorrectExpressionException {
+    public InputContext(String expression) throws IncorrectExpressionException {
         if (expression.trim().isEmpty()) {
             throw new IncorrectExpressionException("Input expression should be not empty.");
         }

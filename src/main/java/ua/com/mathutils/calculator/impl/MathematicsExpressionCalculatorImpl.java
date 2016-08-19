@@ -2,6 +2,8 @@ package ua.com.mathutils.calculator.impl;
 
 import ua.com.mathutils.calculator.IncorrectExpressionException;
 import ua.com.mathutils.calculator.MathematicsExpressionCalculator;
+import ua.com.mathutils.calculator.impl.context.InputContext;
+import ua.com.mathutils.calculator.impl.context.OutputContext;
 import ua.com.mathutils.calculator.impl.stateMachine.FiniteStateMachine;
 
 public class MathematicsExpressionCalculatorImpl implements MathematicsExpressionCalculator {

@@ -1,8 +1,8 @@
 package ua.com.mathutils.calculator.impl.stateMachine;
 
 import ua.com.mathutils.calculator.IncorrectExpressionException;
-import ua.com.mathutils.calculator.impl.InputContext;
-import ua.com.mathutils.calculator.impl.OutputContext;
+import ua.com.mathutils.calculator.impl.context.InputContext;
+import ua.com.mathutils.calculator.impl.context.OutputContext;
 import ua.com.mathutils.calculator.impl.parser.EvaluationCommand;
 import ua.com.mathutils.calculator.impl.parser.Parser;
 import ua.com.mathutils.calculator.impl.parser.ParserFactory;

@@ -1,7 +1,7 @@
 package ua.com.mathutils.calculator.impl.parser;
 
-import ua.com.mathutils.calculator.impl.InputContext;
-import ua.com.mathutils.calculator.impl.OutputContext;
+import ua.com.mathutils.calculator.impl.context.InputContext;
+import ua.com.mathutils.calculator.impl.context.OutputContext;
 
 /**
  * Evaluation command to evaluate input sequence and convert to output.

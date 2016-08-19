@@ -1,7 +1,7 @@
 package ua.com.mathutils.calculator.impl.parser;
 
-import ua.com.mathutils.calculator.impl.InputContext;
-import ua.com.mathutils.calculator.impl.OutputContext;
+import ua.com.mathutils.calculator.impl.context.InputContext;
+import ua.com.mathutils.calculator.impl.context.OutputContext;
 
 import java.util.Optional;
 import java.util.regex.Matcher;
