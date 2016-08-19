@@ -1,5 +1,6 @@
 package ua.com.mathutils.calculator.impl.stateMachine;
 
+import org.apache.log4j.Logger;
 import ua.com.mathutils.calculator.IncorrectExpressionException;
 import ua.com.mathutils.calculator.impl.context.InputContext;
 import ua.com.mathutils.calculator.impl.context.OutputContext;
@@ -15,6 +16,7 @@ import java.util.Set;
  */
 public class FiniteStateMachine {
 
+    private Logger log = Logger.getLogger(FiniteStateMachine.class);
     private TransitionMatrix transitionMatrix = new TransitionMatrix();
     private State current = transitionMatrix.getStartState();
     private ParserFactory parserFactory = new ParserFactory();
@@ -26,8 +28,16 @@ public class FiniteStateMachine {
      * @param output holder of interim output result
      */
     public void run(InputContext input, OutputContext output) throws IncorrectExpressionException {
+        if (log.isInfoEnabled()) {
+            log.info("Run method processing started.");
+        }
+
         while (getCurrentState() != transitionMatrix.getFinishState()) {
             current = nextState(getCurrentState(), input, output);
+        }
+
+        if (log.isInfoEnabled()) {
+            log.info("Run method processing finished.");
         }
     }
 
@@ -40,6 +50,10 @@ public class FiniteStateMachine {
      * @return accepted state or null if there no possible states
      */
     private State nextState(State current, InputContext input, OutputContext output) throws IncorrectExpressionException {
+        if (log.isInfoEnabled()) {
+            log.info("Current state: " + current);
+        }
+
         Set<State> possibleStates = transitionMatrix.getPossibleStates(current);
         if (possibleStates.isEmpty()) {
             throw new IllegalStateException(
@@ -51,6 +65,11 @@ public class FiniteStateMachine {
             final Optional<EvaluationCommand> command = parser.parse(input, output);
             if (command.isPresent()) {
                 command.get().execute(input, output);
+
+                if (log.isInfoEnabled()) {
+                    log.info("Accepted state: " + next);
+                }
+
                 return next;
             }
 
