@@ -19,11 +19,8 @@ class BinaryOperatorParser implements Parser {
     private final Logger log = Logger.getLogger(BinaryOperatorParser.class);
     private final BinaryOperatorsContainer operatorsContainer = new BinaryOperatorsContainer();
 
-
     @Override
     public Optional<EvaluationCommand> parse(InputContext input, OutputContext output) {
-
-        final Pattern pattern = Pattern.compile("\\+");
 
         if (input.hasMoreToParse() && isOperator(input,operatorsContainer)) {
             if (log.isDebugEnabled()) {
@@ -34,15 +31,14 @@ class BinaryOperatorParser implements Parser {
 
                 @Override
                 public void execute(InputContext input, OutputContext output) {
-                    final BinaryOperator newOperator = operatorsContainer.getOperator(input.getCurrentChar()).get();
-                    final Matcher matcher = pattern.matcher(input.getCurrentChar().toString());
-                    matcher.find();
+                    final Character operatorRepresentation = input.getCurrentChar();
+                    final BinaryOperator newOperator = operatorsContainer.getOperator(operatorRepresentation).get();
 
                     if (log.isDebugEnabled()) {
-                        log.debug("Binary operator: " + matcher.group() + " is parsed.");
+                        log.debug("Binary operator: " + operatorRepresentation + " is parsed.");
                     }
 
-                    input.movePointer(matcher.end());
+                    input.movePointer(1);
 
                     final Deque<BinaryOperator> operators = output.getOperators();
                     final Deque<Double> operands = output.getOperands();
