@@ -9,8 +9,8 @@ public class BinaryOperatorsContainer {
     private final Map<Character, BinaryOperator> operatorsContainer = new HashMap<>();
 
     public BinaryOperatorsContainer() {
-
         operatorsContainer.put('+', new Addition());
+        operatorsContainer.put('-', new Subtraction());
     }
 
     public Optional<BinaryOperator> getOperator(Character representation) {
