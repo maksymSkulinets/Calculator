@@ -75,7 +75,7 @@ public class FiniteStateMachine {
 
         }
         final String message = "Illegal input: " + input.getExpression()
-                + "Illegal symbol at position: " + input.getPointerIndex();
+                + " Illegal symbol at position: " + input.getPointerIndex();
         throw new IncorrectExpressionException(message, input.getPointerIndex());
     }
 

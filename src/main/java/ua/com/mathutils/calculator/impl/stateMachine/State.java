@@ -6,5 +6,6 @@ package ua.com.mathutils.calculator.impl.stateMachine;
 public enum State {
     START,
     NUMBER,
+    BINARY_OPERATOR,
     FINISH
 }
