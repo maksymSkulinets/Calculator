@@ -17,10 +17,9 @@ class TransitionMatrix {
             new EnumMap<State, Set<State>>(State.class);
 
     TransitionMatrix() {
-        {
-            matrixContainer.put(START, EnumSet.of(NUMBER));
-            matrixContainer.put(NUMBER, EnumSet.of(FINISH));
-        }
+        matrixContainer.put(START, EnumSet.of(NUMBER));
+        matrixContainer.put(BINARY_OPERATOR, EnumSet.of(NUMBER));
+        matrixContainer.put(NUMBER, EnumSet.of(FINISH,BINARY_OPERATOR));
     }
 
     Set<State> getPossibleStates(State current) {
