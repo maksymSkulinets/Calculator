@@ -12,6 +12,7 @@ public class BinaryOperatorsContainer {
         operatorsContainer.put('+', new Addition());
         operatorsContainer.put('-', new Subtraction());
         operatorsContainer.put('*', new Multiplication());
+        operatorsContainer.put('/', new Division());
     }
 
     public Optional<BinaryOperator> getOperator(Character representation) {

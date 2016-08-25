@@ -33,4 +33,13 @@ public class BinaryOperatorsTest {
         final Double actual = calculator.evaluate(input);
         assertEquals("Expected and actual results are not equals", expected, actual,0.0001);
     }
+
+    @Test
+    public void testDivisionOperator() throws IncorrectExpressionException {
+        final MathematicsExpressionCalculator calculator = new MathematicsExpressionCalculatorImpl();
+        final String input = "-55.5/5/2";
+        final Double expected = -5.55;
+        final Double actual = calculator.evaluate(input);
+        assertEquals("Expected and actual results are not equals", expected, actual,0.0001);
+    }
 }
