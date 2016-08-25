@@ -49,4 +49,8 @@ public class InputContext {
             log.debug("Number of parsed input sequence symbols: " + pointer);
         }
     }
+
+    public Character getCurrentChar() {
+        return expression.charAt(pointer);
+    }
 }
