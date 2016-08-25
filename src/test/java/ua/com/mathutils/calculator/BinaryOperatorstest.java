@@ -24,4 +24,13 @@ public class BinaryOperatorsTest {
         final Double actual = calculator.evaluate(input);
         assertEquals("Expected and actual results are not equals", expected, actual,0.0001);
     }
+
+    @Test
+    public void testMultiplicationOperator() throws IncorrectExpressionException {
+        final MathematicsExpressionCalculator calculator = new MathematicsExpressionCalculatorImpl();
+        final String input = "-2*3*4*5";
+        final Double expected = -120.0;
+        final Double actual = calculator.evaluate(input);
+        assertEquals("Expected and actual results are not equals", expected, actual,0.0001);
+    }
 }
