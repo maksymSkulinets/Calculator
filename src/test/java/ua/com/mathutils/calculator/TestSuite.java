@@ -8,7 +8,9 @@ import ua.com.mathutils.calculator.impl.operator.BinaryOperator;
 @Suite.SuiteClasses({
         NumberInputTest.class,
         BinaryOperatorsTest.class,
-        FunctionalityTest.class})
+        FunctionalityTest.class,
+        BracketsTest.class
+})
 
 public class TestSuite {
 }

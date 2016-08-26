@@ -15,6 +15,8 @@ public class ParserFactory {
         parserContainer.put(NUMBER, new NumberParser());
         parserContainer.put(BINARY_OPERATOR, new BinaryOperatorParser());
         parserContainer.put(FINISH, new FinishParser());
+        parserContainer.put(OPENING_BRACKET, new OpeningBracketParser());
+        parserContainer.put(CLOSING_BRACKET, new ClosingBracketParser());
     }
 
     public Parser getParser(State state) {
