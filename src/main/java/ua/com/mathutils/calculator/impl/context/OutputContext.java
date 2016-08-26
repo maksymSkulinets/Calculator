@@ -11,26 +11,43 @@ import java.util.Deque;
  */
 public class OutputContext {
 
-    private final Deque<Double> operands = new ArrayDeque<>();
-    private final Deque<BinaryOperator> binaryOperators = new ArrayDeque<>();
+    private final Deque<EvaluationContext> contexts = new ArrayDeque<>();
+    private EvaluationContext currentContext;
+
+    public OutputContext() {
+        currentContext = new EvaluationContext();
+        contexts.addLast(currentContext);
+    }
 
     public Double removeLastOperand() {
-        return operands.removeLast();
+        return currentContext.getOperands().removeLast();
     }
 
     public void put(Double operand) {
-        operands.addLast(operand);
+        currentContext.getOperands().addLast(operand);
     }
 
     public void put(BinaryOperator binaryOperator) {
-        binaryOperators.addLast(binaryOperator);
+        currentContext.getBinaryOperators().addLast(binaryOperator);
     }
 
     public Deque<BinaryOperator> getOperators() {
-        return binaryOperators;
+        return currentContext.getBinaryOperators();
     }
 
     public Deque<Double> getOperands() {
-        return operands;
+        return currentContext.getOperands();
+    }
+
+    public void openContext() {
+        currentContext = new EvaluationContext();
+        contexts.addLast(currentContext);
+    }
+
+    public void closeContext() {
+        final Double contextResult = currentContext.getOperands().getLast();
+        contexts.removeLast();
+        currentContext = contexts.getLast();
+        currentContext.getOperands().addLast(contextResult);
     }
 }
