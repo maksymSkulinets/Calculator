@@ -14,12 +14,14 @@ import static ua.com.mathutils.calculator.impl.stateMachine.State.*;
 class TransitionMatrix {
 
     private final Map<State, Set<State>> matrixContainer =
-            new EnumMap<State, Set<State>>(State.class);
+            new EnumMap<>(State.class);
 
     TransitionMatrix() {
-        matrixContainer.put(START, EnumSet.of(NUMBER));
-        matrixContainer.put(BINARY_OPERATOR, EnumSet.of(NUMBER));
-        matrixContainer.put(NUMBER, EnumSet.of(FINISH,BINARY_OPERATOR));
+        matrixContainer.put(START, EnumSet.of(NUMBER,OPENING_BRACKET));
+        matrixContainer.put(BINARY_OPERATOR, EnumSet.of(NUMBER,OPENING_BRACKET));
+        matrixContainer.put(NUMBER, EnumSet.of(FINISH, BINARY_OPERATOR,CLOSING_BRACKET));
+        matrixContainer.put(OPENING_BRACKET, EnumSet.of(NUMBER,OPENING_BRACKET));
+        matrixContainer.put(CLOSING_BRACKET, EnumSet.of(BINARY_OPERATOR,FINISH,CLOSING_BRACKET));
     }
 
     Set<State> getPossibleStates(State current) {
