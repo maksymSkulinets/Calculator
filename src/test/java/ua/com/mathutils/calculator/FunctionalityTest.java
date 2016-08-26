@@ -21,8 +21,8 @@ public class FunctionalityTest {
 
     @Test
     public void testIllegalSymbolInput() {
-        final String input = "43.2+67X34";
-        final String expected = "Illegal input: 43.2+67X34. Illegal symbol at position: 7";
+        final String input = "43.2+67@34";
+        final String expected = "Illegal input symbol: @.Index= 7";
         try {
             calculator.evaluate(input);
             fail("IncorrectExpressionException was not thrown.");

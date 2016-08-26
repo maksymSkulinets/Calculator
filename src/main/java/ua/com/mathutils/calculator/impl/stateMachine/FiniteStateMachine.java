@@ -32,6 +32,10 @@ public class FiniteStateMachine {
             log.info("Run method processing started.");
         }
 
+        if (log.isInfoEnabled()) {
+            log.info("Start state: " + transitionMatrix.getStartState());
+        }
+
         while (getCurrentState() != transitionMatrix.getFinishState()) {
             current = nextState(getCurrentState(), input, output);
         }
@@ -50,14 +54,13 @@ public class FiniteStateMachine {
      * @return accepted state or null if there no possible states
      */
     private State nextState(State current, InputContext input, OutputContext output) throws IncorrectExpressionException {
-        if (log.isInfoEnabled()) {
-            log.info("Current state: " + current);
-        }
 
         Set<State> possibleStates = transitionMatrix.getPossibleStates(current);
         if (possibleStates.isEmpty()) {
-            throw new IllegalStateException(
-                    "There are no possible transitions for current state: " + current);
+            final String message = "There are no possible transitions for current state: " + current;
+            final IllegalStateException exception = new IllegalStateException(message);
+            log.warn(message,exception);
+            throw exception;
 
         }
         for (State next : possibleStates) {
@@ -74,9 +77,13 @@ public class FiniteStateMachine {
             }
 
         }
-        final String message = "Illegal input: " + input.getExpression()
-                + " Illegal symbol at position: " + input.getPointerIndex();
-        throw new IncorrectExpressionException(message, input.getPointerIndex());
+
+        final String message = "Illegal input symbol: " + input.getCurrentChar() +
+                ".Index= " + input.getPointerIndex();
+        final IncorrectExpressionException exception =
+                new IncorrectExpressionException(message, input.getPointerIndex());
+        log.warn(message, exception);
+        throw exception;
     }
 
 
