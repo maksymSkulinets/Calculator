@@ -26,9 +26,13 @@ class OpeningBracketParser implements Parser {
 
                 @Override
                 public void execute(InputContext input, OutputContext output) {
+                    final Character currentChar = input.getCurrentChar();
+
                     if (log.isDebugEnabled()) {
-                        log.debug("Bracket : " + input.getCurrentChar() + " is parsed.");
+                        log.debug("Bracket : " + currentChar + " is parsed.");
                     }
+
+                    output.getBracketsCounter().countBracket(currentChar);
                     input.movePointer(1);
                     output.openContext();
                 }

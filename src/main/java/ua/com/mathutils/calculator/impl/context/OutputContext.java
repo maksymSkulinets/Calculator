@@ -13,10 +13,12 @@ public class OutputContext {
 
     private final Deque<EvaluationContext> contexts = new ArrayDeque<>();
     private EvaluationContext currentContext;
+    private BracketsCounter bracketsCounter;
 
     public OutputContext() {
         currentContext = new EvaluationContext();
         contexts.addLast(currentContext);
+        bracketsCounter = new BracketsCounter();
     }
 
     public Double removeLastOperand() {
@@ -25,10 +27,6 @@ public class OutputContext {
 
     public void put(Double operand) {
         currentContext.getOperands().addLast(operand);
-    }
-
-    public void put(BinaryOperator binaryOperator) {
-        currentContext.getBinaryOperators().addLast(binaryOperator);
     }
 
     public Deque<BinaryOperator> getOperators() {
@@ -49,5 +47,9 @@ public class OutputContext {
         contexts.removeLast();
         currentContext = contexts.getLast();
         currentContext.getOperands().addLast(contextResult);
+    }
+
+    public BracketsCounter getBracketsCounter() {
+        return bracketsCounter;
     }
 }

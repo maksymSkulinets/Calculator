@@ -1,11 +1,13 @@
 package ua.com.mathutils.calculator.impl.parser;
 
 import org.apache.log4j.Logger;
+import ua.com.mathutils.calculator.IncorrectExpressionException;
 import ua.com.mathutils.calculator.impl.context.InputContext;
 import ua.com.mathutils.calculator.impl.context.OutputContext;
 import ua.com.mathutils.calculator.impl.operator.BinaryOperator;
 
 import java.util.Deque;
+import java.util.InputMismatchException;
 import java.util.Optional;
 
 /**
@@ -16,12 +18,20 @@ class FinishParser implements Parser {
     private final Logger log = Logger.getLogger(FinishParser.class);
 
     @Override
-    public Optional<EvaluationCommand> parse(InputContext input, OutputContext output) {
+    public Optional<EvaluationCommand> parse(InputContext input, OutputContext output)
+            throws IncorrectExpressionException {
 
         if (!input.hasMoreToParse()) {
 
             if (log.isDebugEnabled()) {
                 log.debug("Finish parser is chosen.");
+            }
+
+            if (output.getBracketsCounter().getValue() != 0) {
+                final String message = "Different quantity of opening and closing brackets.";
+                final IncorrectExpressionException exception = new IncorrectExpressionException(message);
+                log.warn(exception);
+                throw exception;
             }
 
             return Optional.of(new EvaluationCommand() {
