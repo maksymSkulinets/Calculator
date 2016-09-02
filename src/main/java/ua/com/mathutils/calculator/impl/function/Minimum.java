@@ -9,7 +9,7 @@ import java.util.Deque;
  */
 class Minimum implements Function {
 
-    private Logger log = Logger.getLogger(Minimum.class);
+    private final Logger log = Logger.getLogger(Minimum.class);
 
     @Override
     public int getMinimumQuantityOfArguments() {

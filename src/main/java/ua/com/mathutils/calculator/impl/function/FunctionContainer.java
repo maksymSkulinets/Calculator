@@ -13,6 +13,7 @@ public class FunctionContainer {
     public FunctionContainer() {
         functions.put("min(", new Minimum());
         functions.put("max(", new Maximum());
+        functions.put("pow(", new Power());
     }
 
     public Optional<Function> getFunction(String representation) {

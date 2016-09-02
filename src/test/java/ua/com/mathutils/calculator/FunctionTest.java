@@ -55,4 +55,11 @@ public class FunctionTest {
         assertEquals("Maximum function calculation failed.", expected, calculator.evaluate(input), delta);
     }
 
+    @Test
+    public void testPowerFunction() throws IncorrectExpressionException {
+        final String input = "pow(2;3)";
+        final Double expected = 8.0;
+        assertEquals("Power function calculation failed.", expected, calculator.evaluate(input), delta);
+    }
+
 }
