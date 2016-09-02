@@ -12,6 +12,7 @@ public class FunctionContainer {
 
     public FunctionContainer() {
         functions.put("min(", new Minimum());
+        functions.put("max(", new Maximum());
     }
 
     public Optional<Function> getFunction(String representation) {

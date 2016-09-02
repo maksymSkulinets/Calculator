@@ -48,4 +48,11 @@ public class FunctionTest {
         }
     }
 
+    @Test
+    public void testMaximumFunction() throws IncorrectExpressionException {
+        final String input = "max(-10;5;-5;-3.42)";
+        final Double expected = 5.0;
+        assertEquals("Maximum function calculation failed.", expected, calculator.evaluate(input), delta);
+    }
+
 }
