@@ -17,6 +17,8 @@ public class ParserFactory {
         parserContainer.put(FINISH, new FinishParser());
         parserContainer.put(OPENING_BRACKET, new OpeningBracketParser());
         parserContainer.put(CLOSING_BRACKET, new ClosingBracketParser());
+        parserContainer.put(FUNCTIONS_SEPARATOR, new FunctionsSeparatorParser());
+        parserContainer.put(FUNCTION, new FunctionParser());
     }
 
     public Parser getParser(State state) {
