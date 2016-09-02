@@ -1,5 +1,6 @@
 package ua.com.mathutils.calculator.impl.parser;
 
+import ua.com.mathutils.calculator.IncorrectExpressionException;
 import ua.com.mathutils.calculator.impl.context.InputContext;
 import ua.com.mathutils.calculator.impl.context.OutputContext;
 
@@ -13,5 +14,5 @@ public interface EvaluationCommand {
      * @param input  input wrapper of mathematics expression
      * @param output holder of interim output result
      */
-    void execute(InputContext input, OutputContext output);
+    void execute(InputContext input, OutputContext output) throws IncorrectExpressionException;
 }

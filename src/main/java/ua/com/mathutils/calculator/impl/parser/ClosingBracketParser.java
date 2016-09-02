@@ -36,7 +36,7 @@ class ClosingBracketParser implements Parser {
 
             return Optional.of(new EvaluationCommand() {
                 @Override
-                public void execute(InputContext input, OutputContext output) {
+                public void execute(InputContext input, OutputContext output) throws IncorrectExpressionException {
                     final Character bracketRepresentation = input.getCurrentChar();
 
                     if (log.isDebugEnabled()) {
@@ -58,19 +58,38 @@ class ClosingBracketParser implements Parser {
         return Optional.empty();
     }
 
-    private void executeFunction(OutputContext output) {
+    private void executeFunction(OutputContext output) throws IncorrectExpressionException {
+        final int argumentsNumber = output.getOperands().size();
+
         if (log.isDebugEnabled()) {
             log.debug("Number of function arguments inside current context: "
-                    + output.getOperands().size());
+                    + argumentsNumber);
         }
 
-        while (output.getCurrentContext().getOperands().size() > 1) {
-            final Double right = output.getOperands().removeLast();
-            final Double left = output.getOperands().removeLast();
-            final Function function = output.getCurrentContext().getFunction().get();
-            final Double result = function.execute(left, right);
-            output.getOperands().addLast(result);
+        final Function function = output.getCurrentContext().getFunction().get();
+
+        if (argumentsNumber < function.getMinimumQuantityOfArguments()) {
+
+            final String message = "Invalid number of functions arguments." +
+                    "Minimum number: " + function.getMinimumQuantityOfArguments() +
+                    "Actual: " + argumentsNumber;
+            final IncorrectExpressionException exception = new IncorrectExpressionException(message);
+            log.warn(exception);
+            throw exception;
         }
+
+        if (argumentsNumber > function.getMaximumQuantityOfArguments()) {
+
+            final String message = "Invalid number of functions arguments. " +
+                    "Maximum number: " + function.getMaximumQuantityOfArguments() + " " +
+                    "Actual: " + argumentsNumber;
+            final IncorrectExpressionException exception = new IncorrectExpressionException(message);
+            log.warn(exception);
+            throw exception;
+        }
+
+        final Double functionResult = function.execute(output.getOperands());
+        output.getOperands().addLast(functionResult);
     }
 
     private void executeRemainingOperators(OutputContext output) {

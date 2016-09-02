@@ -2,6 +2,8 @@ package ua.com.mathutils.calculator.impl.function;
 
 import org.apache.log4j.Logger;
 
+import java.util.Deque;
+
 class Minimum implements Function {
 
     private Logger log = Logger.getLogger(Minimum.class);
@@ -17,12 +19,27 @@ class Minimum implements Function {
     }
 
     @Override
-    public Double execute(Double leftArgument, Double rightArgument) {
-        final double result = Math.min(leftArgument, rightArgument);
+    public Double execute(Deque<Double> arguments) {
         if (log.isDebugEnabled()) {
-            log.debug("Function minimum execute.Arguments: " + leftArgument + " ; " + rightArgument +
-                    ". Result: " + result);
+            log.debug("Function minimum. Arguments: " + arguments);
         }
+
+        if (arguments.size() == 1) {
+            return arguments.removeLast();
+        }
+
+        while (arguments.size() != 1) {
+            final Double leftArgument = arguments.removeLast();
+            final Double rightArgument = arguments.removeLast();
+            arguments.addLast(Math.min(leftArgument, rightArgument));
+        }
+
+        final Double result = arguments.removeLast();
+
+        if (log.isDebugEnabled()) {
+            log.debug("Result: " + result);
+        }
+
         return result;
     }
 }

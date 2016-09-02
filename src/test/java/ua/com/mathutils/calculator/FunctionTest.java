@@ -36,4 +36,16 @@ public class FunctionTest {
         }
     }
 
+    @Test
+    public void testIllegalNumberOfFunctionArguments() {
+        final String input = "min()";
+        final String expected = "Invalid number of functions arguments.Minimum number: 1 Actual: 0";
+        try {
+            calculator.evaluate(input);
+            fail("IncorrectExpressionException was not thrown.");
+        } catch (IncorrectExpressionException e) {
+            assertEquals("Such IncorrectExpressionException message is not expected.", expected, e.getMessage());
+        }
+    }
+
 }
