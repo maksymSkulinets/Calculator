@@ -11,8 +11,6 @@ public abstract class BinaryOperator implements Comparable<BinaryOperator> {
         this.priority = priority;
     }
 
-    public abstract char getRepresentation();
-
     public abstract Double execute(Double leftOperand, Double rightOperand);
 
     @Override

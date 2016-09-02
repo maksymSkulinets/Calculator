@@ -51,6 +51,5 @@ class NumberParser implements Parser {
     private boolean isNumber(InputContext input) {
         final Character currentChar = input.getCurrentChar();
         return (isDigit(currentChar) || currentChar == '-');
-
     }
 }

@@ -5,15 +5,15 @@ import org.apache.log4j.Logger;
 /**
  * Implementation of {@link BinaryOperator} for divide operation.
  */
-public class Division extends BinaryOperator {
-    private Logger log = Logger.getLogger(Subtraction.class);
+class Division extends BinaryOperator {
+
+    private final Logger log = Logger.getLogger(Subtraction.class);
 
     Division() {
         super(Priority.MEDIUM);
     }
 
-    @Override
-    public char getRepresentation() {
+    static char getRepresentation() {
         return '/';
     }
 

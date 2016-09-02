@@ -12,10 +12,10 @@ public class BinaryOperatorsContainer {
     private final Map<Character, BinaryOperator> operatorsContainer = new HashMap<>();
 
     public BinaryOperatorsContainer() {
-        operatorsContainer.put('+', new Addition());
-        operatorsContainer.put('-', new Subtraction());
-        operatorsContainer.put('*', new Multiplication());
-        operatorsContainer.put('/', new Division());
+        operatorsContainer.put(Addition.getRepresentation(), new Addition());
+        operatorsContainer.put(Subtraction.getRepresentation(), new Subtraction());
+        operatorsContainer.put(Multiplication.getRepresentation(), new Multiplication());
+        operatorsContainer.put(Division.getRepresentation(), new Division());
     }
 
     public Optional<BinaryOperator> getOperator(Character representation) {

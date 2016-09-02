@@ -5,16 +5,15 @@ import org.apache.log4j.Logger;
 /**
  * Implementation of {@link BinaryOperator} for multiplication operation.
  */
-public class Multiplication extends BinaryOperator {
+class Multiplication extends BinaryOperator {
 
-    private Logger log = Logger.getLogger(Subtraction.class);
+    private final Logger log = Logger.getLogger(Subtraction.class);
 
     Multiplication() {
         super(Priority.MEDIUM);
     }
 
-    @Override
-    public char getRepresentation() {
+    static char getRepresentation() {
         return '*';
     }
 

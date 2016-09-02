@@ -13,8 +13,7 @@ class Addition extends BinaryOperator {
         super(Priority.LOW);
     }
 
-    @Override
-    public char getRepresentation() {
+    static char getRepresentation() {
         return '+';
     }
 
