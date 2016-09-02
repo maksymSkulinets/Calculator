@@ -22,14 +22,6 @@ public class OutputContext {
         bracketsCounter = new BracketsCounter();
     }
 
-    public Double removeLastOperand() {
-        return currentContext.getOperands().removeLast();
-    }
-
-    public void put(Double operand) {
-        currentContext.getOperands().addLast(operand);
-    }
-
     public Deque<BinaryOperator> getOperators() {
         return currentContext.getOperators();
     }

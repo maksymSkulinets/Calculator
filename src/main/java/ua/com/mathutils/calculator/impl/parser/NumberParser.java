@@ -39,8 +39,7 @@ class NumberParser implements Parser {
                     if (log.isDebugEnabled()) {
                         log.debug("Number: " + newNumber + " is parsed.");
                     }
-
-                    output.put(newNumber);
+                    output.getOperands().addLast(newNumber);
                     input.movePointer(matcher.end());
                 }
             });

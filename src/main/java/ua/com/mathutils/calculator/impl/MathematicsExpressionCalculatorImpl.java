@@ -17,7 +17,7 @@ public class MathematicsExpressionCalculatorImpl implements MathematicsExpressio
         final OutputContext output = new OutputContext();
         final FiniteStateMachine stateMachine = new FiniteStateMachine();
         stateMachine.run(input, output);
-        final Double result = output.removeLastOperand();
+        final Double result = output.getOperands().removeLast();
 
         if (log.isInfoEnabled()) {
             log.info("Output result: " + result);
