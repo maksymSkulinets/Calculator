@@ -20,7 +20,7 @@ class Subtraction extends BinaryOperator {
 
         final double result = leftOperand - rightOperand;
         if (log.isDebugEnabled()) {
-            log.debug(leftOperand + " - " + rightOperand + "= " + result);
+            log.debug("Binary operator execute: " + leftOperand + " - " + rightOperand + "= " + result);
         }
         return result;
 

@@ -59,6 +59,11 @@ class ClosingBracketParser implements Parser {
     }
 
     private void executeFunction(OutputContext output) {
+        if (log.isDebugEnabled()) {
+            log.debug("Number of function arguments inside current context: "
+                    + output.getOperands().size());
+        }
+
         while (output.getCurrentContext().getOperands().size() > 1) {
             final Double right = output.getOperands().removeLast();
             final Double left = output.getOperands().removeLast();
@@ -71,10 +76,13 @@ class ClosingBracketParser implements Parser {
     private void executeRemainingOperators(OutputContext output) {
         final Deque<Double> operands = output.getOperands();
         final Deque<BinaryOperator> operators = output.getOperators();
+
+        if (log.isDebugEnabled()) {
+            log.debug("Number of remaining operators inside current context: "
+                    + operators.size());
+        }
+
         while (!operators.isEmpty()) {
-            if (log.isDebugEnabled()) {
-                log.debug("Number of remaining operators inside brackets: " + operators.size());
-            }
             final Double rightOperand = operands.removeLast();
             final Double leftOperand = operands.removeLast();
             final Double result = operators.removeLast().execute(leftOperand, rightOperand);

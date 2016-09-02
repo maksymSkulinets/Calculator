@@ -20,7 +20,8 @@ class Minimum implements Function {
     public Double execute(Double leftArgument, Double rightArgument) {
         final double result = Math.min(leftArgument, rightArgument);
         if (log.isDebugEnabled()) {
-            log.debug("Math.min(" + leftArgument + ";" + rightArgument + ")= " + result);
+            log.debug("Function minimum execute.Arguments: " + leftArgument + " ; " + rightArgument +
+                    ". Result: " + result);
         }
         return result;
     }

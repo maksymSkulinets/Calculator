@@ -86,7 +86,6 @@ public class FiniteStateMachine {
         throw exception;
     }
 
-
     private State getCurrentState() {
         return current;
     }

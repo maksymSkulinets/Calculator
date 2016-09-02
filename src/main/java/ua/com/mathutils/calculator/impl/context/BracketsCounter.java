@@ -11,8 +11,8 @@ public class BracketsCounter {
     }
 
     /**
-     * Count number of brackets.If symbol '(' is parsed value increments.
-     * If symbol ')' is parsed value decrements.
+     * Count number of brackets.If symbol '(' parsed value increments.
+     * If symbol ')' parsed value decrements.
      *
      * @param symbol char representation of bracket.
      */
