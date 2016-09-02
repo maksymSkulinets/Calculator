@@ -37,7 +37,7 @@ class NumberParser implements Parser {
                     final Double newNumber = Double.valueOf(matcher.group());
 
                     if (log.isDebugEnabled()) {
-                        log.debug("Number: " + newNumber + " -is parsed.");
+                        log.debug("Number: " + newNumber + " is parsed.");
                     }
 
                     output.put(newNumber);

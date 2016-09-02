@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import ua.com.mathutils.calculator.IncorrectExpressionException;
 import ua.com.mathutils.calculator.impl.context.InputContext;
 import ua.com.mathutils.calculator.impl.context.OutputContext;
+import ua.com.mathutils.calculator.impl.function.Function;
 import ua.com.mathutils.calculator.impl.operator.BinaryOperator;
 
 import java.util.Deque;
@@ -36,14 +37,18 @@ class ClosingBracketParser implements Parser {
             return Optional.of(new EvaluationCommand() {
                 @Override
                 public void execute(InputContext input, OutputContext output) {
-                    final Character currentChar = input.getCurrentChar();
+                    final Character bracketRepresentation = input.getCurrentChar();
 
                     if (log.isDebugEnabled()) {
-                        log.debug("Bracket : " + currentChar + " is parsed.");
+                        log.debug("Bracket : " + bracketRepresentation + " is parsed.");
                     }
 
-                    output.getBracketsCounter().countBracket(currentChar);
-                    executeRemainingOperators(output.getOperators(), output.getOperands());
+                    if (output.getCurrentContext().getFunction().isPresent()) {
+                        executeFunction(output);
+                    } else {
+                        executeRemainingOperators(output);
+                    }
+                    output.getBracketsCounter().countBracket(bracketRepresentation);
                     output.closeContext();
                     input.movePointer(1);
                 }
@@ -53,11 +58,19 @@ class ClosingBracketParser implements Parser {
         return Optional.empty();
     }
 
-    private boolean isClosingBracket(Character currentChar) {
-        return (currentChar == ')');
+    private void executeFunction(OutputContext output) {
+        while (output.getCurrentContext().getOperands().size() > 1) {
+            final Double right = output.getOperands().removeLast();
+            final Double left = output.getOperands().removeLast();
+            final Function function = output.getCurrentContext().getFunction().get();
+            final Double result = function.execute(left, right);
+            output.getOperands().addLast(result);
+        }
     }
 
-    private void executeRemainingOperators(Deque<BinaryOperator> operators, Deque<Double> operands) {
+    private void executeRemainingOperators(OutputContext output) {
+        final Deque<Double> operands = output.getOperands();
+        final Deque<BinaryOperator> operators = output.getOperators();
         while (!operators.isEmpty()) {
             if (log.isDebugEnabled()) {
                 log.debug("Number of remaining operators inside brackets: " + operators.size());
@@ -67,5 +80,9 @@ class ClosingBracketParser implements Parser {
             final Double result = operators.removeLast().execute(leftOperand, rightOperand);
             operands.add(result);
         }
+    }
+
+    private boolean isClosingBracket(Character currentChar) {
+        return (currentChar == ')');
     }
 }
