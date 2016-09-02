@@ -1,6 +1,7 @@
 package ua.com.mathutils.calculator.impl.context;
 
 
+import ua.com.mathutils.calculator.impl.function.Function;
 import ua.com.mathutils.calculator.impl.operator.BinaryOperator;
 
 import java.util.ArrayDeque;
@@ -30,7 +31,7 @@ public class OutputContext {
     }
 
     public Deque<BinaryOperator> getOperators() {
-        return currentContext.getBinaryOperators();
+        return currentContext.getOperators();
     }
 
     public Deque<Double> getOperands() {
@@ -42,11 +43,20 @@ public class OutputContext {
         contexts.addLast(currentContext);
     }
 
+    public void openContext(Function function) {
+        currentContext = new EvaluationContext(function);
+        contexts.addLast(currentContext);
+    }
+
     public void closeContext() {
         final Double contextResult = currentContext.getOperands().getLast();
         contexts.removeLast();
         currentContext = contexts.getLast();
         currentContext.getOperands().addLast(contextResult);
+    }
+
+    public EvaluationContext getCurrentContext() {
+        return currentContext;
     }
 
     public BracketsCounter getBracketsCounter() {
