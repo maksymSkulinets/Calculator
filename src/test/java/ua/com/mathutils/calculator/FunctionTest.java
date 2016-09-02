@@ -62,4 +62,11 @@ public class FunctionTest {
         assertEquals("Power function calculation failed.", expected, calculator.evaluate(input), delta);
     }
 
+    @Test
+    public void testPiFunction() throws IncorrectExpressionException {
+        final String input = "pi_()";
+        final Double expected = 3.141592653589793;
+        assertEquals("Pi function calculation failed.", expected, calculator.evaluate(input), delta);
+    }
+
 }

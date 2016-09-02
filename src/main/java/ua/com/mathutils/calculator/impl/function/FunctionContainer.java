@@ -14,6 +14,7 @@ public class FunctionContainer {
         functions.put("min(", new Minimum());
         functions.put("max(", new Maximum());
         functions.put("pow(", new Power());
+        functions.put("pi_(",new PiFunction());
     }
 
     public Optional<Function> getFunction(String representation) {
