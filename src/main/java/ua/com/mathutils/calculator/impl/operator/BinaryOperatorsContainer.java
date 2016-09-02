@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Contain all available operators.
+ */
 public class BinaryOperatorsContainer {
 
     private final Map<Character, BinaryOperator> operatorsContainer = new HashMap<>();

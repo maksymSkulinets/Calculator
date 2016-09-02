@@ -8,6 +8,9 @@ import ua.com.mathutils.calculator.impl.function.FunctionSeparator;
 
 import java.util.Optional;
 
+/**
+ * Parser implementation for parse function separator symbol.
+ */
 public class FunctionsSeparatorParser implements Parser {
 
     private final Logger log = Logger.getLogger(FunctionsSeparatorParser.class);

@@ -9,6 +9,9 @@ import ua.com.mathutils.calculator.impl.function.FunctionContainer;
 
 import java.util.Optional;
 
+/**
+ * Parser implementation for parse functions.
+ */
 class FunctionParser implements Parser {
 
     private final Logger log = Logger.getLogger(FunctionParser.class);

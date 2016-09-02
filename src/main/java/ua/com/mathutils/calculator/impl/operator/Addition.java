@@ -2,6 +2,9 @@ package ua.com.mathutils.calculator.impl.operator;
 
 import org.apache.log4j.Logger;
 
+/**
+ * Implementation of {@link BinaryOperator} for plus operation.
+ */
 class Addition extends BinaryOperator {
 
     private Logger log = Logger.getLogger(Addition.class);

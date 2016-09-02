@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Contain all available functions.
+ */
 public class FunctionContainer {
     private final Map<String, Function> functions = new HashMap<>();
 

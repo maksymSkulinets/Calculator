@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Binary operator parser.
+ * Parser implementation for parse binary operator.
  */
 class BinaryOperatorParser implements Parser {
 

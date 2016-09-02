@@ -4,6 +4,9 @@ import org.apache.log4j.Logger;
 
 import java.util.Deque;
 
+/**
+ * Implementation of {@link Function} for math minimum.
+ */
 class Minimum implements Function {
 
     private Logger log = Logger.getLogger(Minimum.class);

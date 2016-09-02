@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import static java.lang.Character.isDigit;
 
 /**
- * Number parser.
+ * Parser implementation for parse numbers.
  */
 class NumberParser implements Parser {
 

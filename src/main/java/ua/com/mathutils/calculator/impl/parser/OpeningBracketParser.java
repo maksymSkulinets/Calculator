@@ -7,7 +7,7 @@ import ua.com.mathutils.calculator.impl.context.OutputContext;
 import java.util.Optional;
 
 /**
- * Opening bracket parser.
+ * Parser implementation for parse opening brackets.
  */
 class OpeningBracketParser implements Parser {
 

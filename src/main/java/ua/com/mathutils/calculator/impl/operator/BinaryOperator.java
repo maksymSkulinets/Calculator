@@ -1,5 +1,8 @@
 package ua.com.mathutils.calculator.impl.operator;
 
+/**
+ * Binary operator abstract instance with priority comparison.
+ */
 public abstract class BinaryOperator implements Comparable<BinaryOperator> {
 
     private final Priority priority;

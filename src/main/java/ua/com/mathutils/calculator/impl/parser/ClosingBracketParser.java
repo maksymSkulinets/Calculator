@@ -11,7 +11,7 @@ import java.util.Deque;
 import java.util.Optional;
 
 /**
- * Closing bracket parser.
+ * Parser implementation for parse closing brackets.
  */
 class ClosingBracketParser implements Parser {
 
@@ -71,7 +71,7 @@ class ClosingBracketParser implements Parser {
         if (argumentsNumber < function.getMinimumQuantityOfArguments()) {
 
             final String message = "Invalid number of functions arguments." +
-                    "Minimum number: " + function.getMinimumQuantityOfArguments() +
+                    "Minimum number: " + function.getMinimumQuantityOfArguments() + " " +
                     "Actual: " + argumentsNumber;
             final IncorrectExpressionException exception = new IncorrectExpressionException(message);
             log.warn(exception);
