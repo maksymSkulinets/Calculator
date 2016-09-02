@@ -17,11 +17,13 @@ class TransitionMatrix {
             new EnumMap<>(State.class);
 
     TransitionMatrix() {
-        matrixContainer.put(START, EnumSet.of(NUMBER,OPENING_BRACKET));
-        matrixContainer.put(BINARY_OPERATOR, EnumSet.of(NUMBER,OPENING_BRACKET));
-        matrixContainer.put(NUMBER, EnumSet.of(FINISH, BINARY_OPERATOR,CLOSING_BRACKET));
-        matrixContainer.put(OPENING_BRACKET, EnumSet.of(NUMBER,OPENING_BRACKET));
-        matrixContainer.put(CLOSING_BRACKET, EnumSet.of(BINARY_OPERATOR,FINISH,CLOSING_BRACKET));
+        matrixContainer.put(START, EnumSet.of(NUMBER, OPENING_BRACKET,FUNCTION));
+        matrixContainer.put(BINARY_OPERATOR, EnumSet.of(NUMBER, OPENING_BRACKET,FUNCTION));
+        matrixContainer.put(NUMBER, EnumSet.of(FINISH, BINARY_OPERATOR, CLOSING_BRACKET, FUNCTIONS_SEPARATOR));
+        matrixContainer.put(OPENING_BRACKET, EnumSet.of(NUMBER, OPENING_BRACKET));
+        matrixContainer.put(CLOSING_BRACKET, EnumSet.of(BINARY_OPERATOR, FINISH, CLOSING_BRACKET));
+        matrixContainer.put(FUNCTION, EnumSet.of(NUMBER));
+        matrixContainer.put(FUNCTIONS_SEPARATOR, EnumSet.of(NUMBER,FUNCTION));
     }
 
     Set<State> getPossibleStates(State current) {
