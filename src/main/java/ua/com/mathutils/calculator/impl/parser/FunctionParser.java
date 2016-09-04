@@ -8,6 +8,7 @@ import ua.com.mathutils.calculator.impl.function.Function;
 import ua.com.mathutils.calculator.impl.function.FunctionContainer;
 
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Parser implementation for parse functions.
@@ -28,15 +29,22 @@ class FunctionParser implements Parser {
             return Optional.of(new EvaluationCommand() {
                 @Override
                 public void execute(InputContext input, OutputContext output) {
-                    final String functionRepresentation = input.getRemaining().substring(0, 4);
-                    final Function function = functions.getFunction(functionRepresentation.substring(0, 4)).get();
+                    final String remaining = input.getRemaining();
+                    final String functionRepresentation = input.getRemaining();
+                    Function function = null;
+
+                    for (String current : functions.getAllRepresentations()) {
+                        if (remaining.startsWith(current)) {
+                            function = functions.getFunction(current).get();
+                        }
+                    }
 
                     if (log.isDebugEnabled()) {
                         log.debug("Function: " + functionRepresentation + " is parsed.");
                     }
                     output.openContext(function);
                     output.getBracketsCounter().countBracket('(');
-                    input.movePointer(4);
+                    input.movePointer(function.getRepresentation().length());
                 }
             });
 
@@ -47,11 +55,13 @@ class FunctionParser implements Parser {
 
     private boolean isFunction(InputContext input, FunctionContainer functions) {
         final String remaining = input.getRemaining();
-        if (remaining.length() < 4) {
-            return false;
-        }
+        final Set<String> representations = functions.getAllRepresentations();
 
-        final Optional<Function> function = functions.getFunction(remaining.substring(0, 4));
-        return function.isPresent();
+        for (String current : representations) {
+            if (remaining.startsWith(current)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

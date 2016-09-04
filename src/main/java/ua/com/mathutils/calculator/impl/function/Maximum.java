@@ -7,9 +7,13 @@ import java.util.Deque;
 /**
  * Implementation of {@link Function} for math maximum function.
  */
-public class Maximum implements Function {
+class Maximum implements Function {
 
     private final Logger log = Logger.getLogger(Maximum.class);
+
+    public String getRepresentation() {
+        return "max(";
+    }
 
     @Override
     public int getMinimumQuantityOfArguments() {

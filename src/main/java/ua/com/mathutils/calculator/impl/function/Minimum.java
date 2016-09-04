@@ -11,6 +11,10 @@ class Minimum implements Function {
 
     private final Logger log = Logger.getLogger(Minimum.class);
 
+    public String getRepresentation() {
+        return "min(";
+    }
+
     @Override
     public int getMinimumQuantityOfArguments() {
         return 1;

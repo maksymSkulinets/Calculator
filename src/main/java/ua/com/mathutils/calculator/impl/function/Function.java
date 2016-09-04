@@ -1,7 +1,5 @@
 package ua.com.mathutils.calculator.impl.function;
 
-import ua.com.mathutils.calculator.IncorrectExpressionException;
-
 import java.util.Deque;
 
 /**
@@ -18,6 +16,8 @@ public interface Function {
      * @return maximum quantity of valid arguments.
      */
     int getMaximumQuantityOfArguments();
+
+    String getRepresentation();
 
     Double execute(Deque<Double> arguments);
 }

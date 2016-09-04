@@ -3,6 +3,7 @@ package ua.com.mathutils.calculator.impl.function;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * Contain all available functions.
@@ -14,7 +15,7 @@ public class FunctionContainer {
         functions.put("min(", new Minimum());
         functions.put("max(", new Maximum());
         functions.put("pow(", new Power());
-        functions.put("pi_(",new PiFunction());
+        functions.put("pi(", new PiFunction());
     }
 
     public Optional<Function> getFunction(String representation) {
@@ -23,5 +24,9 @@ public class FunctionContainer {
             return Optional.empty();
         }
         return Optional.of(function);
+    }
+
+    public Set<String> getAllRepresentations() {
+        return functions.keySet();
     }
 }

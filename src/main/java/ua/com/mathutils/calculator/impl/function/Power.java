@@ -7,9 +7,13 @@ import java.util.Deque;
 /**
  * Implementation of {@link Function} for math power.
  */
-public class Power implements Function {
+class Power implements Function {
 
     private final Logger log = Logger.getLogger(Power.class);
+
+    public String getRepresentation() {
+        return "pow(";
+    }
 
     @Override
     public int getMinimumQuantityOfArguments() {

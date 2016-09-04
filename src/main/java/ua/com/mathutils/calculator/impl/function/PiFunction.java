@@ -5,7 +5,12 @@ import java.util.Deque;
 /**
  * Implementation of {@link Function} for math pi function.
  */
-public class PiFunction implements Function {
+class PiFunction implements Function {
+
+    public String getRepresentation() {
+        return "pi(";
+    }
+
     @Override
     public int getMinimumQuantityOfArguments() {
         return 0;
