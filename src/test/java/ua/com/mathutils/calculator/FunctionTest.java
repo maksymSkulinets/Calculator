@@ -68,5 +68,10 @@ public class FunctionTest {
         final Double expected = 3.141592653589793;
         assertEquals("Pi function calculation failed.", expected, calculator.evaluate(input), delta);
     }
-
+    @Test
+    public void EE() throws IncorrectExpressionException {
+        final String input = "pow(pow(2;3);4)";
+        final Double expected = 4096.0;
+        assertEquals("Nested power function calculation failed.", expected, calculator.evaluate(input), delta);
+    }
 }

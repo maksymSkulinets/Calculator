@@ -21,8 +21,8 @@ class TransitionMatrix {
         matrixContainer.put(BINARY_OPERATOR, EnumSet.of(NUMBER, OPENING_BRACKET,FUNCTION));
         matrixContainer.put(NUMBER, EnumSet.of(FINISH, BINARY_OPERATOR, CLOSING_BRACKET, FUNCTIONS_SEPARATOR));
         matrixContainer.put(OPENING_BRACKET, EnumSet.of(NUMBER, OPENING_BRACKET));
-        matrixContainer.put(CLOSING_BRACKET, EnumSet.of(BINARY_OPERATOR, FINISH, CLOSING_BRACKET));
-        matrixContainer.put(FUNCTION, EnumSet.of(NUMBER,CLOSING_BRACKET));
+        matrixContainer.put(CLOSING_BRACKET, EnumSet.of(BINARY_OPERATOR, FINISH, CLOSING_BRACKET,FUNCTIONS_SEPARATOR));
+        matrixContainer.put(FUNCTION, EnumSet.of(FUNCTION,NUMBER,CLOSING_BRACKET));
         matrixContainer.put(FUNCTIONS_SEPARATOR, EnumSet.of(NUMBER,FUNCTION));
     }
 
