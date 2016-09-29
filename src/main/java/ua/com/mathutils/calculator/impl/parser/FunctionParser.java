@@ -28,7 +28,7 @@ class FunctionParser implements Parser {
 
             return Optional.of(new EvaluationCommand() {
                 @Override
-                public void execute(InputContext input, OutputContext output) {
+                public void execute(InputContext input, OutputContext output) throws IncorrectExpressionException {
                     final String remaining = input.getRemaining();
                     final String functionRepresentation = input.getRemaining();
                     Function function = null;
@@ -43,8 +43,18 @@ class FunctionParser implements Parser {
                         log.debug("Function: " + functionRepresentation + " is parsed.");
                     }
                     output.openContext(function);
-                    output.getBracketsCounter().countBracket('(');
                     input.movePointer(function.getRepresentation().length());
+
+                    if (input.getCurrentChar() != '(') {
+                        final String message = "Opening bracket expected.Index: " + (input.getPointerIndex() + 1);
+                        final IncorrectExpressionException exception =
+                                new IncorrectExpressionException(message, input.getPointerIndex());
+                        log.warn(message, exception);
+                        throw exception;
+                    }
+
+                    output.getBracketsCounter().countBracket(input.getCurrentChar());
+                    input.movePointer(1);
                 }
             });
 
