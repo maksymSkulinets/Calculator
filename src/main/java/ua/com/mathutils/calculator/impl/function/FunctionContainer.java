@@ -12,10 +12,10 @@ public class FunctionContainer {
     private final Map<String, Function> functions = new HashMap<>();
 
     public FunctionContainer() {
-        functions.put("min(", new Minimum());
-        functions.put("max(", new Maximum());
-        functions.put("pow(", new Power());
-        functions.put("pi(", new PiFunction());
+        functions.put("min", new Minimum());
+        functions.put("max", new Maximum());
+        functions.put("pow", new Power());
+        functions.put("pi", new PiFunction());
     }
 
     public Optional<Function> getFunction(String representation) {

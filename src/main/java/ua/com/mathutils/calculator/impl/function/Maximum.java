@@ -12,7 +12,7 @@ class Maximum implements Function {
     private final Logger log = Logger.getLogger(Maximum.class);
 
     public String getRepresentation() {
-        return "max(";
+        return "max";
     }
 
     @Override

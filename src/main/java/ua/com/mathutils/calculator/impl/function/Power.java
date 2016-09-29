@@ -12,7 +12,7 @@ class Power implements Function {
     private final Logger log = Logger.getLogger(Power.class);
 
     public String getRepresentation() {
-        return "pow(";
+        return "pow";
     }
 
     @Override

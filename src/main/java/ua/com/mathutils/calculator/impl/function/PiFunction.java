@@ -8,7 +8,7 @@ import java.util.Deque;
 class PiFunction implements Function {
 
     public String getRepresentation() {
-        return "pi(";
+        return "pi";
     }
 
     @Override
