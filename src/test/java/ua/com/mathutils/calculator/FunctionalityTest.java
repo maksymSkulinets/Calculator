@@ -12,11 +12,11 @@ public class FunctionalityTest {
 
     @Test
     public void testMultiplicityOperators() throws IncorrectExpressionException {
-        final String input = "-120+10*2-22.55*2/5-2.98+min(4;6)";
+        final String input = "(((-120))+((10*2))-22.55*2/5-2.98)+min(4;6)";
         final Double expected = -108.0;
         double delta = 0.0001;
         assertEquals("Multiplicity operators calculation failed.",
-                expected, calculator.evaluate(input), delta);
+                expected,  calculator.evaluate(input), delta);
     }
 
     @Test

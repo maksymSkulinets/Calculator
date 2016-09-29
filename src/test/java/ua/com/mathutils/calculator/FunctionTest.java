@@ -27,7 +27,7 @@ public class FunctionTest {
     @Test
     public void testIllegalFunctionInput() {
         final String input = "min34;42";
-        final String expected = "Illegal input symbol: m.Index= 0";
+        final String expected = "Opening bracket expected.Index: 4";
         try {
             calculator.evaluate(input);
             fail("IncorrectExpressionException was not thrown.");
@@ -68,6 +68,7 @@ public class FunctionTest {
         final Double expected = 3.141592653589793;
         assertEquals("Pi function calculation failed.", expected, calculator.evaluate(input), delta);
     }
+
     @Test
     public void testNestedPowerFunction() throws IncorrectExpressionException {
         final String input = "pow(pow(2;3);4)";
