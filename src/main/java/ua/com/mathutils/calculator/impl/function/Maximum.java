@@ -22,7 +22,7 @@ class Maximum implements Function {
 
     @Override
     public int getMaximumQuantityOfArguments() {
-        return Integer.MAX_VALUE;
+        return 19;
     }
 
     @Override
