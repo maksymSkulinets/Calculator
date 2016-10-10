@@ -1,6 +1,6 @@
 # Calculator of mathematics expression (server side part).
 
-## Aboult: mathematic expression calculator uses shunting-yard algorithm and implements finite state machine.
+## Mathematic expression calculator uses shunting-yard algorithm and implements finite state machine.
 
 ### Technologies:
 *  Java 8.
