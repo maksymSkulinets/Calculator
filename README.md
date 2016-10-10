@@ -30,7 +30,6 @@
     "-12*((3*pi()-0.55)+47.22-(((0.22/0.1)))"
 
 ### If use not valid input you will have custom exception with message - reason.
-### Current version not supported white spaces in input sequence.
 
 ## ENJOY!!
 
